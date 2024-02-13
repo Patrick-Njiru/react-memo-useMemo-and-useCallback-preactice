@@ -1,0 +1,21 @@
+OPTIMIZATION HOOKS
+
+1. React.memo || memo
+React.memo is used to wrap around a component. It only re-renders the wrapped component on prop change
+  const Products = React.memo(function Products(props) {
+    return (...)
+  })
+
+2. useCallback
+useCallback is used to wrap around functions that may trigger re-rendering of children component on re-render of the parent component containing this function. They usually take a dependency array. The function will be re-rendered only when the dependency changes.
+
+  const addToCart = useCallback((newItem) => {
+    setCart({...cartItem, newItem })
+  }, [cart])
+
+3. useMemo
+useMemo is used to wrap functions that take a long time to return a value to avoid recreating and calling them every time the component re-renders. It also takes a dependency array. It remembers and retains the return value of the function until the dependency changes
+
+
+
+NOTE: React is FAST by Default, so this hooks are not necessary most of the time. Use only when your app is large and slow. Use of this optimization techniques comes at a cost
